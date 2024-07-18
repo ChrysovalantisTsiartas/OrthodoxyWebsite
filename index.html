@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Orthodoxy</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">ORTHODOXY</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Αρχική</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="products.html">Προϊόντα</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">Γνωρίστε Μας</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Επικοινωνία</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container text-center mt-5">
+        <h1 class="title bg-dark text-white p-3 rounded shadow">Καλώς Ήρθατε στην Orthodoxy</h1>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-end">
+                <img src="primary.jpg" alt="goodfon.com" class="img-fluid styled-image">
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+                <div class="typed-text" id="typed-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const typedText = document.getElementById('typed-text');
+            const paragraphs = [
+                "Καλώς ήρθατε στην ιστοσελίδα μας! Εδώ θα βρείτε μια μοναδική συλλογή χειροποίητων αντικειμένων που δημιουργούνται με μεράκι και πίστη στην Ορθόδοξη παράδοση. Από εικόνες αγίων μέχρι εκκλησιαστικά αντικείμενα, κάθε προϊόν είναι φτιαγμένο με αγάπη και αφοσίωση. Η αποστολή μας είναι να διαδώσουμε την ομορφιά της Ορθόδοξης τέχνης και να ενισχύσουμε την πίστη σας μέσω αυθεντικών, καλαίσθητων δημιουργιών. "
+                //space for adding another paragraph using , " "
+            ];
+
+            let currentParagraphIndex = 0;
+            let currentLineIndex = 0;
+            let currentCharacterIndex = 0;
+            let typingTimeout;
+
+            function typeEffect() {
+                const currentLine = paragraphs[currentParagraphIndex].split('\n')[currentLineIndex];
+                if (currentCharacterIndex < currentLine.length) {
+                    typedText.innerHTML += currentLine.charAt(currentCharacterIndex);
+                    currentCharacterIndex++;
+                    typingTimeout = setTimeout(typeEffect, 20); // typing speed(milliseconds)
+                } else {
+                    if (currentLineIndex === 0) {
+                        typedText.innerHTML += '<br>'; 
+                    } else {
+                        typedText.innerHTML += '<br><br>'; 
+                    }
+                    currentLineIndex++;
+                    currentCharacterIndex = 0;
+                    if (currentLineIndex < paragraphs[currentParagraphIndex].split('\n').length) {
+                        typingTimeout = setTimeout(typeEffect, 900); // Delay before typing next line (milliseconds)
+                    } else {
+                        currentParagraphIndex++;
+                        currentLineIndex = 0;
+                        if (currentParagraphIndex >= paragraphs.length) {
+                            clearTimeout(typingTimeout); 
+                        } else {
+                            typedText.innerHTML += '<br><br>'; 
+                            typingTimeout = setTimeout(typeEffect, 100); // Delay before typing next paragraph (milliseconds)
+                        }
+                    }
+                }
+            }
+
+           
+            typeEffect();
+        });
+    </script>
+    
+    <footer class="footer bg-dark text-white text-center py-3">
+        <p>&copy; 2024 ORTHODOXY. All rights reserved. Created by Chrysovalantis Tsiartas.</p>
+    </footer>
+    
+</body>
+</html>
